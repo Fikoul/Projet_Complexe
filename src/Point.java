@@ -1,19 +1,17 @@
-
 public class Point {
 
 	private int x;
 	private int y;
-	
-	public Point(int i, int j)
-	{
-		x=i;
-		y=j;
+
+	public Point(int i, int j) {
+		x = i;
+		y = j;
 	}
 
-	public void printpoint()
-	{
-		System.out.println("x: "+ this.x+"\n y:"+this.y);
+	public void printpoint() {
+		System.out.println("x: " + this.x + "\n y:" + this.y);
 	}
+
 	public int getX() {
 		return x;
 	}
@@ -29,7 +27,5 @@ public class Point {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	
-	
+
 }
