@@ -1,45 +1,45 @@
 public class Rectangle implements Comparable<Rectangle>{
 
-	private Point pointGauche;
-	private Point pointDroit;
+	private static int next_id = 0;
+	
+	public int identifier;
+	
+	private Point point;
 
-	public Rectangle(Point gauche, Point droit) {
-		this.pointGauche = gauche;
-		this.pointDroit = droit;
+	private int largeur;
+
+	private int hauteur;
+
+	public Rectangle(Point point, int largeur, int hauteur) {
+		this.point = point;
+		this.largeur = largeur;
+		this.hauteur = hauteur;
+		this.identifier = next_id;
+		next_id++;
 
 	}
-	
 	public boolean intersectWith(Rectangle r2) {
-		return (
-					( this.getPointGauche().getX() < r2.getPointGauche().getX() && this.getPointDroit().getX() > r2.getPointGauche().getX() )
-						||
-					(this.getPointGauche().getX() < r2.getPointDroit().getX() && this.getPointDroit().getX() > r2.getPointDroit().getX())
-				) && (
-					( this.getPointGauche().getY() < r2.getPointGauche().getY() && this.getPointDroit().getY() > r2.getPointGauche().getY() ) 
-						||
-					(this.getPointGauche().getY() < r2.getPointDroit().getY() && this.getPointDroit().getY() > r2.getPointDroit().getY())
-				);
+		boolean x = (this.getPoint().getX() <= r2.getPoint().getX() + r2.largeur)    && (r2.getPoint().getX() <= this.getPoint().getX()+this.largeur);
+		boolean y = (this.getPoint().getY() <= r2.getPoint().getY()+r2.getHauteur()) && (r2.getPoint().getY() <= this.getPoint().getY()+this.hauteur);
+		 
+		return x && y;
 	}
 	
 	@Override
 	public int compareTo(Rectangle r2) {
-		return  this.getPointGauche().getX() - r2.getPointGauche().getX(); 
+		return  this.getPoint().getX() - r2.getPoint().getX(); 
 	}
 
-	public Point getPointGauche() {
-		return pointGauche;
+	public Point getPoint() {
+		return point;
+	}
+	
+	public int getLargeur() {
+		return largeur;
 	}
 
-	public void setPointGauche(Point pointGauche) {
-		this.pointGauche = pointGauche;
-	}
-
-	public Point getPointDroit() {
-		return pointDroit;
-	}
-
-	public void setPointDroit(Point pointDroit) {
-		this.pointDroit = pointDroit;
+	public int getHauteur() {
+		return hauteur;
 	}
 
 }

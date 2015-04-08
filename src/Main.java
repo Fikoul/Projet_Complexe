@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
-		int x1, x2, y1, y2;
 		Point p1;
 		Point p2;
 		Rectangle rec;
@@ -18,19 +19,31 @@ public class Main {
 
 		System.out.print("Pour " + n + " rectangles: \n");
 
+		int x, y, largeur, hauteur;
 		for (int i = 0; i < n; i++) {
-			x1 = (int) (Math.random() * 10000);
-			x2 = (int) ( x1 + 40); //HACK
-			y1 = (int) (Math.random() * 10000);
-			y2 = (int) (y1 + 40);
+			x = (int) (Math.random() * 1000);
+			y = (int) (Math.random() * 800);
+			largeur = (int) ( Math.random() * 100);
+			hauteur = (int) ( Math.random() * 100);
 
-			p1 = new Point(x1, y1);
-			p2 = new Point(x2, y2);
-			rec = new Rectangle(p1, p2);
-			//System.out.println("Rectangle " + i +" : P1(" + x1 + " , " + y1 + "), P2(" + x2 + " , " + y2 + ")" );
+
+			p1 = new Point(x, y);
+			rec = new Rectangle(p1, largeur, hauteur);
 			map.add(rec);
 
 		}
+		ArrayList<Rectangle> clone = (ArrayList<Rectangle>) map.clone();
+
+        Visual visual = new Visual(clone);
+        
+		JFrame feentre = new JFrame("Rectangles");
+		JFrame window = new JFrame();
+        window.setSize(1500,1000);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.getContentPane().add(visual);
+        window.setVisible(true);
+		visual.repaint();
+		
 		System.out.println("Les " + map.size() + " ont été générés");
 
 		long time = System.currentTimeMillis();
@@ -43,14 +56,15 @@ public class Main {
 	
 	public static void pairAPair(ArrayList<Rectangle> map){
 		Rectangle current = null;
+		Rectangle compared  = null;
 		int nb = 0;
 		int count = 0;
 		for(int i = 0; i < map.size(); i++){
 			current = map.get(i);
 			for(int j = i + 1 ; j < map.size(); j++){
+				compared = map.get(j);
 				count++;
-				if(current.intersectWith(map.get(j))){
-					//System.out.println("Intersection avec Rectagle " + i + " et " + j);
+				if(current.intersectWith(compared)){
 					nb++;
 				}
 			}
@@ -69,15 +83,10 @@ public class Main {
 			for(int j = i + 1 ; j < map.size(); j++){
 				count++;
 				compared =  map.get(j);
-				/*
-				System.out.println("--------------------------------------------------------------");
-				System.out.println(current.getPointDroit().getX());
-				System.out.println(compared.getPointGauche().getX());
-				*/
-				if(current.getPointDroit().getX() < compared.getPointGauche().getX())
+
+				if(current.getPoint().getX()  + current.getLargeur() < compared.getPoint().getX())
 					break;
 				if(current.intersectWith(compared)){
-					//System.out.println("Intersection avec Rectagle " + i + " et " + j);
 					nb++;
 				}
 			}
