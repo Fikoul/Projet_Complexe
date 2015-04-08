@@ -23,27 +23,15 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			x = (int) (Math.random() * 1000);
 			y = (int) (Math.random() * 800);
-			largeur = (int) ( Math.random() * 100);
-			hauteur = (int) ( Math.random() * 100);
+			largeur = (int) ( Math.random() * 500);
+			hauteur = (int) ( Math.random() * 400);
 
 
 			p1 = new Point(x, y);
 			rec = new Rectangle(p1, largeur, hauteur);
 			map.add(rec);
 
-		}
-		ArrayList<Rectangle> clone = (ArrayList<Rectangle>) map.clone();
-
-        Visual visual = new Visual(clone);
-        
-		JFrame feentre = new JFrame("Rectangles");
-		JFrame window = new JFrame();
-        window.setSize(1500,1000);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().add(visual);
-        window.setVisible(true);
-		visual.repaint();
-		
+		}		
 		System.out.println("Les " + map.size() + " ont été générés");
 
 		long time = System.currentTimeMillis();
@@ -52,6 +40,15 @@ public class Main {
 		time = System.currentTimeMillis();
 		balayage(map);
 		System.out.println(System.currentTimeMillis() - time + " ms");	
+		
+		//Ajout en fin de command pour éviter tout interraction avec les algo
+        
+		JFrame feentre = new JFrame("Rectangles");
+		JFrame window = new JFrame();
+        window.setSize(1500,1000);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.getContentPane().add(new Visual(map));
+        window.setVisible(true);
 	}
 	
 	public static void pairAPair(ArrayList<Rectangle> map){
