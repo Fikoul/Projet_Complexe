@@ -42,13 +42,14 @@ public class Main {
 		System.out.println(System.currentTimeMillis() - time + " ms");	
 		
 		//Ajout en fin de command pour éviter tout interraction avec les algo
-        
+        /*
 		JFrame feentre = new JFrame("Rectangles");
 		JFrame window = new JFrame();
         window.setSize(1500,1000);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().add(new Visual(list));
         window.setVisible(true);
+        */
 		
 	}
 	
@@ -56,7 +57,7 @@ public class Main {
 		Rectangle current = null;
 		Rectangle compared  = null;
 		int nb = 0;
-		int count = 0;
+		long count = 0;
 		for(int i = 0; i < list.size(); i++){
 			current = list.get(i);
 			for(int j = i + 1 ; j < list.size(); j++){
@@ -75,14 +76,16 @@ public class Main {
 		int nb = 0;
 		Rectangle current = null;
 		Rectangle compared = null;
-		int count = 0;
+		long count = 0;
 		for(int i = 0; i < list.size(); i++){
 			current = list.get(i);
 			for(int j = i + 1 ; j < list.size(); j++){
 				count++;
 				compared =  list.get(j);
-				if(current.getPoint().getX()  + current.getLargeur() < compared.getPoint().getX())
+				if(current.getPoint().getX()  + current.getLargeur() < compared.getPoint().getX()){
 					break;
+				}
+				
 				if(current.intersectWith(compared)){
 					nb++;
 				}

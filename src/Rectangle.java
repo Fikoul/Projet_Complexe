@@ -16,7 +16,6 @@ public class Rectangle implements Comparable<Rectangle>{
 		this.hauteur = hauteur;
 		this.identifier = next_id;
 		next_id++;
-
 	}
 	public boolean intersectWith(Rectangle r2) {
 		boolean x = (this.getPoint().getX() <= r2.getPoint().getX() + r2.largeur)    && (r2.getPoint().getX() <= this.getPoint().getX()+this.largeur);
