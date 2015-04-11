@@ -79,10 +79,11 @@ public class Main {
 		long count = 0;
 		for(int i = 0; i < list.size(); i++){
 			current = list.get(i);
+			int sizeMax = current.getPoint().getX()  + current.getLargeur();
 			for(int j = i + 1 ; j < list.size(); j++){
 				count++;
 				compared =  list.get(j);
-				if(current.getPoint().getX()  + current.getLargeur() < compared.getPoint().getX()){
+				if(sizeMax < compared.getPoint().getX()){
 					break;
 				}
 				
