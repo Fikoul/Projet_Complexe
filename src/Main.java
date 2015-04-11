@@ -56,7 +56,7 @@ public class Main {
 	public static void pairAPair(ArrayList<Rectangle> list){
 		Rectangle current = null;
 		Rectangle compared  = null;
-		int nb = 0;
+		long nb = 0;
 		long count = 0;
 		for(int i = 0; i < list.size(); i++){
 			current = list.get(i);
@@ -73,7 +73,7 @@ public class Main {
 
 	public static void balayage(ArrayList<Rectangle> list){
 		Collections.sort(list);
-		int nb = 0;
+		long nb = 0;
 		Rectangle current = null;
 		Rectangle compared = null;
 		long count = 0;
