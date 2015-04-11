@@ -15,7 +15,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Entrer le nombre de rectangles à génerer ");
 		int n = sc.nextInt();
-		ArrayList<Rectangle> map = new ArrayList<Rectangle>();
+		ArrayList<Rectangle> list = new ArrayList<Rectangle>();
 
 		System.out.print("Pour " + n + " rectangles: \n");
 
@@ -29,16 +29,16 @@ public class Main {
 
 			p1 = new Point(x, y);
 			rec = new Rectangle(p1, largeur, hauteur);
-			map.add(rec);
+			list.add(rec);
 
 		}		
-		System.out.println("Les " + map.size() + " ont été générés");
+		System.out.println("Les " + list.size() + " ont été générés");
 
 		long time = System.currentTimeMillis();
-		pairAPair(map);
+		pairAPair(list);
 		System.out.println(System.currentTimeMillis() - time + " ms");
 		time = System.currentTimeMillis();
-		balayage(map);
+		balayage(list);
 		System.out.println(System.currentTimeMillis() - time + " ms");	
 		
 		//Ajout en fin de command pour éviter tout interraction avec les algo
@@ -47,19 +47,20 @@ public class Main {
 		JFrame window = new JFrame();
         window.setSize(1500,1000);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().add(new Visual(map));
+        window.getContentPane().add(new Visual(list));
         window.setVisible(true);
+		
 	}
 	
-	public static void pairAPair(ArrayList<Rectangle> map){
+	public static void pairAPair(ArrayList<Rectangle> list){
 		Rectangle current = null;
 		Rectangle compared  = null;
 		int nb = 0;
 		int count = 0;
-		for(int i = 0; i < map.size(); i++){
-			current = map.get(i);
-			for(int j = i + 1 ; j < map.size(); j++){
-				compared = map.get(j);
+		for(int i = 0; i < list.size(); i++){
+			current = list.get(i);
+			for(int j = i + 1 ; j < list.size(); j++){
+				compared = list.get(j);
 				count++;
 				if(current.intersectWith(compared)){
 					nb++;
@@ -69,18 +70,17 @@ public class Main {
 		System.out.println("Nombre de comparaisons : " + count + ", Intersections : " + nb);
 	}
 
-	public static void balayage(ArrayList<Rectangle> map){
-		Collections.sort(map);
+	public static void balayage(ArrayList<Rectangle> list){
+		Collections.sort(list);
 		int nb = 0;
 		Rectangle current = null;
 		Rectangle compared = null;
 		int count = 0;
-		for(int i = 0; i < map.size(); i++){
-			current = map.get(i);
-			for(int j = i + 1 ; j < map.size(); j++){
+		for(int i = 0; i < list.size(); i++){
+			current = list.get(i);
+			for(int j = i + 1 ; j < list.size(); j++){
 				count++;
-				compared =  map.get(j);
-
+				compared =  list.get(j);
 				if(current.getPoint().getX()  + current.getLargeur() < compared.getPoint().getX())
 					break;
 				if(current.intersectWith(compared)){
