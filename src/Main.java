@@ -58,14 +58,12 @@ public class Main {
 		}		
 		System.out.println("Les " + list.size() + " ont été générés");
 
-		/*
 		long time = System.currentTimeMillis();
 		pairAPair(list);
 		System.out.println(System.currentTimeMillis() - time + " ms");
 		time = System.currentTimeMillis();
 		balayage(list);
 		System.out.println(System.currentTimeMillis() - time + " ms");	
-		*/
 		
 		System.out.println("Voulez-vous un visuel des rectangles générés ? 1) oui, 2) non");
 		System.out.println("Les rectangles seront adaptés pour s'afficher dans la fenetre");
