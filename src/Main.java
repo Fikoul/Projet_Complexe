@@ -13,20 +13,44 @@ public class Main {
 		Point p2;
 		Rectangle rec;
 		Scanner sc = new Scanner(System.in);
+		System.out.println("Type de données à tester");
+		System.out.println("1) Rectangle aléatoire");
+		System.out.println("2) Rectable de largeur et hauteur 1");
+		System.out.println("3) Rectangle de largeur et hauteur entr 0 et √n");
+		int choix = sc.nextInt();
+		if(choix > 3 || choix < 1)
+			System.exit(0);	//DUR mais c'est la vie
 		System.out.print("Entrer le nombre de rectangles à génerer ");
 		int n = sc.nextInt();
 		ArrayList<Rectangle> list = new ArrayList<Rectangle>();
 
 		System.out.print("Pour " + n + " rectangles: \n");
 
-		int x, y, largeur, hauteur;
+		int racine = 0;
+		if(choix == 3)
+			 racine = (int) Math.sqrt(n);
+		int x, y, largeur = 0, hauteur = 0;
 		for (int i = 0; i < n; i++) {
-			x = (int) (Math.random() * 1000);
-			y = (int) (Math.random() * 800);
-			largeur = (int) ( Math.random() * 500);
-			hauteur = (int) ( Math.random() * 400);
-
-
+			x = (int) (Math.random() * n);
+			y = (int) (Math.random() * n);
+			switch (choix) {
+			case 1:
+				int x2 = (int) (Math.random() * n);
+				int y2 = (int) (Math.random() * n);
+				largeur = Math.abs(x2-x);
+				hauteur = Math.abs(y2-y);
+				x = Math.min(x, x2);
+				y = Math.min(y, y2);
+				break;
+			case 2:
+				largeur = 1;
+				hauteur = 1;
+				break;
+			case 3:
+				largeur = (int) ( Math.random() * racine);
+				hauteur = (int) ( Math.random() * racine);
+				break;
+			}
 			p1 = new Point(x, y);
 			rec = new Rectangle(p1, largeur, hauteur);
 			list.add(rec);
