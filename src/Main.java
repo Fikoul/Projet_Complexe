@@ -20,7 +20,7 @@ public class Main {
 		int choix = sc.nextInt();
 		if(choix > 3 || choix < 1)
 			System.exit(0);	//DUR mais c'est la vie
-		System.out.print("Entrer le nombre de rectangles à génerer ");
+		System.out.println("Entrer le nombre de rectangles à génerer ");
 		int n = sc.nextInt();
 		ArrayList<Rectangle> list = new ArrayList<Rectangle>();
 
