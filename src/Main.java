@@ -58,22 +58,31 @@ public class Main {
 		}		
 		System.out.println("Les " + list.size() + " ont été générés");
 
+		/*
 		long time = System.currentTimeMillis();
 		pairAPair(list);
 		System.out.println(System.currentTimeMillis() - time + " ms");
 		time = System.currentTimeMillis();
 		balayage(list);
 		System.out.println(System.currentTimeMillis() - time + " ms");	
+		*/
 		
-		//Ajout en fin de command pour éviter tout interraction avec les algo
-        /*
-		JFrame feentre = new JFrame("Rectangles");
-		JFrame window = new JFrame();
-        window.setSize(1500,1000);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().add(new Visual(list));
-        window.setVisible(true);
-        */
+		System.out.println("Voulez-vous un visuel des rectangles générés ? 1) oui, 2) non");
+		System.out.println("Les rectangles seront adaptés pour s'afficher dans la fenetre");
+		int fenetre = sc.nextInt();
+		if(fenetre == 1){
+			System.out.println("Taille en largeur et hauteur de la fenetre ? 0 pour defaut (1000)");
+			int size = sc.nextInt();
+			size = size > 0 ? size : 1000;
+			
+			JFrame window = new JFrame("Rectangles");
+	        window.setSize(size, size);
+	        
+	        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        //Racine car on peut faire des rectangles très grand avec le choix 3
+	        window.getContentPane().add(new Visual(list, (double)((size- racine)) /(double)( n) ));
+	        window.setVisible(true);
+		}
 		
 	}
 	

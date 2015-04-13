@@ -14,9 +14,12 @@ public class Visual extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Rectangle> list;
+	private double rapport;
 
-	public Visual(ArrayList<Rectangle> list){
+	public Visual(ArrayList<Rectangle> list, double rapport){
 		this.list = list;
+		this.rapport = rapport;
+		System.out.println(rapport);
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -28,8 +31,9 @@ public class Visual extends JPanel {
         	float gc = (float) (rand.nextFloat());
         	float b = (float) (rand.nextFloat());
         	g.setColor(new Color(r, gc, b));
-            g.drawRect(rec.getPoint().getX(), rec.getPoint().getY(), rec.getLargeur(),rec.getHauteur());
-            g2.drawString(rec.identifier+"", rec.getPoint().getX(), rec.getPoint().getY() - 10);
+            g.drawRect((int) (rec.getPoint().getX() * rapport), (int) (rec.getPoint().getY() * rapport),
+            		(int) (rec.getLargeur() * rapport), (int) (rec.getHauteur() * rapport));
+            g2.drawString(rec.identifier+"", (int)(rec.getPoint().getX() * rapport), (int)(rec.getPoint().getY() * rapport - 10));
         }
     }
 }
